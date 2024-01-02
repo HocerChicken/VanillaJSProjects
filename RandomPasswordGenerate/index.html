@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Random Password Generate</title>
-        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body>
         <div class="container">
@@ -16,19 +16,38 @@
                 <input type="text" name="password" id="password" placeholder="Password" />
                 <img src="./images/copy.png" alt="" onclick="copyPassword()" />
             </div>
-            <button onclick="generateRandom()"><img src="./images/generate.png" alt="generate" />Generate Password</button>
+
+            <div class="button-container">
+                <div class="button-container--input">
+                    <label for="#lengthPass">Length of password: </label>
+                    <input type="text" name="lengthPass" id="lengthPass" value="8" placeholder="length of password" />
+                    <div id="lengthWarning" class="warning-message"></div>
+                </div>
+                <button onclick="generateRandom()"><img src="./images/generate.png" alt="generate" />Generate Password</button>
+            </div>
         </div>
         <script>
             const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?";
             const passwordBox = document.querySelector("#password");
+            const lengthPasswordBox = document.querySelector("#lengthPass");
+            const lengthWarning = document.querySelector("#lengthWarning");
             function generateRandom() {
                 let password = "";
-                let length = 12;
+                let length = parseInt(lengthPasswordBox.value, 10);
+
+                if (isNaN(length) || length < 0) {
+                    lengthWarning.textContent = "Length of Password must be a positive number";
+                    lengthWarning.classList.add("show");
+                    return;
+                }
+                lengthWarning.textContent = "";
+                lengthWarning.classList.remove("show");
                 while (password.length < length) {
                     password += characters[Math.floor(Math.random() * characters.length)];
                 }
                 passwordBox.value = password;
             }
+
             function copyPassword() {
                 passwordBox.select();
                 document.execCommand("copy");

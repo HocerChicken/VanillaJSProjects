@@ -49,14 +49,17 @@ body {
     border: 0;
     font-size: 24px;
 }
+
 .container button img {
     width: 28px;
     margin-right: 8px;
 }
+
 .container button {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
     border-radius: 5px;
     background-color: #019f55;
     border: 0;
@@ -66,4 +69,43 @@ body {
     font-size: 24px;
     font-weight: 300;
     cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.button-container--input {
+    position: relative;
+}
+.button-container--input label{
+    display: block;
+    margin-bottom: 5px;
+}
+
+.button-container--input #lengthPass {
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 14px;
+}
+.button-container--input .warning-message {
+    color: red;
+    position: absolute;
+    top: 100px; 
+    width: 700px;
+    padding: 8px;
+    background-color: #ffdddd;
+    border: 1px solid #ff9999;
+    border-radius: 4px;
+    display: none;
+}
+
+.button-container--input .warning-message.show {
+    display: block;
 }
